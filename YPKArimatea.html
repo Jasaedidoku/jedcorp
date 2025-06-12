@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor Proposal Interaktif - YPK Arimatea</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f5; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #0d9488;
+            border-bottom-color: #14b8a6;
+        }
+        .package-tab {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            position: relative; 
+        }
+        .package-tab.active {
+            border-bottom-color: #f59e0b;
+            color: #0f172a;
+        }
+        .package-tab:not(.active) {
+            color: #64748b;
+        }
+        .package-tab span.badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #f59e0b;
+            color: white;
+            border-radius: 9999px;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .flowchart-arrow {
+            position: relative;
+        }
+        .flowchart-arrow::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #cbd5e1;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 1023px) {
+            .flowchart-arrow::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%) translateY(10px);
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-slate-800">Proposal Digital YPK Arimatea</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#ringkasan" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Ringkasan</a>
+                        <a href="#analisis" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Analisis Pasar</a>
+                        <a href="#strategi" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Strategi Konten</a>
+                        <a href="#paket" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Opsi Paket</a>
+                        <a href="#investasi" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Nilai Investasi</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8 space-y-16">
+
+        <section id="ringkasan" class="pt-16 -mt-16 text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-800">Menjadi Pelopor Digital yang Empati</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">Sebuah proposal untuk mentransformasi kehadiran digital YPK Arimatea, membangun jembatan kepercayaan dengan komunitas Semarang melalui strategi konten Instagram yang profesional dan penuh kasih.</p>
+            
+            <div class="mt-10 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-slate-800 mb-2">Peluang di Tengah Kesenjangan Digital</h3>
+                <p class="text-center text-slate-500 max-w-3xl mx-auto mb-6">Sektor pelayanan kedukaan di Semarang menunjukkan tingkat adopsi digital yang sangat rendah. Ini adalah peluang "samudera biru" bagi YPK Arimatea untuk tampil sebagai pemimpin pasar yang modern dan terpercaya.</p>
+                <div class="chart-container mx-auto h-[300px] md:h-[350px] max-h-[40vh]">
+                    <canvas id="digitalPresenceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="analisis" class="pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-12">Analisis Pasar & Posisi Strategis</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Peta Lanskap Kompetitif</h3>
+                    <p class="text-slate-500 mb-6">Analisis 12 yayasan utama menunjukkan YPK Arimatea memiliki penawaran layanan yang kuat dan komprehensif, menjadi fondasi solid untuk keunggulan di ranah digital.</p>
+                    <div class="chart-container h-[400px] md:h-[450px] max-h-[55vh]">
+                        <canvas id="competitorServicesChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                     <h3 class="text-2xl font-bold text-slate-800 mb-6">Analisis SWOT</h3>
+                     <div class="space-y-6">
+                        <div class="p-4 rounded-lg border-l-4 border-teal-500 bg-teal-50">
+                            <h4 class="font-bold text-teal-800 flex items-center">💪 Kekuatan (Strengths)</h4>
+                            <p class="mt-1 text-sm text-teal-700">Sejarah panjang (sejak 1974), reputasi & kepercayaan, model keanggotaan unik, dan layanan lengkap 24 jam.</p>
+                        </div>
+                         <div class="p-4 rounded-lg border-l-4 border-amber-500 bg-amber-50">
+                            <h4 class="font-bold text-amber-800 flex items-center">📉 Kelemahan (Weaknesses)</h4>
+                            <p class="mt-1 text-sm text-amber-700">Kehadiran digital yang terfragmentasi dan belum terintegrasi di platform utama seperti Instagram.</p>
+                        </div>
+                        <div class="p-4 rounded-lg border-l-4 border-sky-500 bg-sky-50">
+                            <h4 class="font-bold text-sky-800 flex items-center">💡 Peluang (Opportunities)</h4>
+                            <p class="mt-1 text-sm text-sky-700">Potensi menjadi pionir digital, meningkatkan kesadaran merek secara eksponensial, dan menjangkau generasi muda.</p>
+                        </div>
+                        <div class="p-4 rounded-lg border-l-4 border-red-500 bg-red-50">
+                            <h4 class="font-bold text-red-800 flex items-center">⚠️ Ancaman (Threats)</h4>
+                            <p class="mt-1 text-sm text-red-700">Pesaing dapat mulai mengadopsi strategi digital, dan perubahan perilaku konsumen yang semakin bergantung pada ulasan online.</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategi" class="pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-12">Rancangan Strategi Konten</h2>
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-center text-slate-800 mb-4">Empat Pilar Konten Utama</h3>
+                <p class="text-center text-slate-500 max-w-3xl mx-auto mb-10">Strategi ini dirancang untuk membangun narasi merek yang kuat, empatik, dan terpercaya di Instagram, selaras dengan misi YPK Arimatea.</p>
+                <div class="flex flex-col lg:flex-row justify-around items-center gap-y-12 lg:gap-x-4">
+                    <div class="flowchart-arrow text-center w-48">
+                        <div class="bg-sky-100 text-sky-800 rounded-lg p-4 shadow-md">
+                            <span class="text-5xl">📚</span>
+                            <h4 class="font-bold mt-2">Edukasi & Informasi</h4>
+                        </div>
+                    </div>
+                     <div class="flowchart-arrow text-center w-48">
+                        <div class="bg-teal-100 text-teal-800 rounded-lg p-4 shadow-md">
+                            <span class="text-5xl">❤️</span>
+                            <h4 class="font-bold mt-2">Empati & Dukungan</h4>
+                        </div>
+                    </div>
+                    <div class="flowchart-arrow text-center w-48">
+                        <div class="bg-amber-100 text-amber-800 rounded-lg p-4 shadow-md">
+                            <span class="text-5xl">🤝</span>
+                            <h4 class="font-bold mt-2">Humanisasi Layanan</h4>
+                        </div>
+                    </div>
+                    <div class="text-center w-48">
+                         <div class="bg-rose-100 text-rose-800 rounded-lg p-4 shadow-md">
+                            <span class="text-5xl">🌐</span>
+                            <h4 class="font-bold mt-2">Keterlibatan Komunitas</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="paket" class="pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Opsi Paket Konten Interaktif</h2>
+            <p class="text-center text-slate-500 max-w-3xl mx-auto mb-8">Pilih salah satu opsi paket di bawah ini untuk melihat rincian deliverables, contoh jadwal, dan simulasi tampilan konten Instagram secara detail.</p>
+            <div id="package-selector" class="flex flex-wrap justify-center border-b border-slate-200 mb-8">
+            </div>
+            <div id="package-details" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 min-h-[500px]">
+            </div>
+        </section>
+        
+        <section id="investasi" class="pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-12">Nilai Investasi & Proyeksi Dampak</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Investasi Strategis</h3>
+                    <p class="text-slate-500 mb-2">Untuk layanan komprehensif selama 1 bulan, mencakup strategi, produksi konten (video & grafis), dan manajemen:</p>
+                    <div class="my-4 text-center">
+                        <p class="text-5xl font-extrabold text-teal-600">Rp 1.500.000</p>
+                        <p class="text-sm text-slate-500">per bulan</p>
+                    </div>
+                    <div class="flex-grow chart-container h-[300px] max-h-[35vh]">
+                        <canvas id="budgetComparisonChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                     <h3 class="text-2xl font-bold text-slate-800 mb-6">Proyeksi Dampak Positif</h3>
+                     <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 bg-teal-100 text-teal-600 rounded-full h-12 w-12 flex items-center justify-center text-2xl font-bold">↑</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Peningkatan Kesadaran Merek</h4>
+                                <p class="text-slate-500">Menjangkau audiens lebih luas di Semarang, menjadikan YPK Arimatea pilihan utama saat dibutuhkan.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 bg-sky-100 text-sky-600 rounded-full h-12 w-12 flex items-center justify-center text-2xl font-bold">✨</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Peningkatan Kepercayaan Publik</h4>
+                                <p class="text-slate-500">Konten yang empatik dan profesional membangun citra sebagai lembaga yang peduli dan terpercaya.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 bg-amber-100 text-amber-600 rounded-full h-12 w-12 flex items-center justify-center text-2xl font-bold">💬</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Keterlibatan Komunitas</h4>
+                                <p class="text-slate-500">Menciptakan ruang digital yang suportif dan memperkuat hubungan dengan masyarakat.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 bg-rose-100 text-rose-600 rounded-full h-12 w-12 flex items-center justify-center text-2xl font-bold">💡</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Komunikasi Layanan yang Jelas</h4>
+                                <p class="text-slate-500">Menyederhanakan informasi kompleks, mengurangi beban dan kebingungan bagi keluarga yang berduka.</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-slate-800 text-slate-300 mt-16">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-bold text-white">Siap Memulai Transformasi Digital Anda?</h3>
+            <p class="mt-2 mb-4 max-w-xl mx-auto">Mari berdiskusi lebih lanjut untuk membangun kehadiran digital YPK Arimatea yang kuat dan penuh empati.</p>
+            <p class="text-sm text-slate-400">Proposal dan Analisis Interaktif | Disiapkan untuk Yayasan Pelayanan Kematian Arimatea Semarang | Juni 2025</p>
+        </div>
+    </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const chartColors = {
+        primary: '#0f172a', 
+        secondary: '#475569', 
+        tertiary: '#14b8a6', 
+        accent1: '#f59e0b', 
+        accent2: '#ef4444', 
+        gray: '#94a3b8' 
+    };
+
+    const wrapLabel = (label, maxWidth) => {
+        if (typeof label !== 'string' || label.length <= maxWidth) return label;
+        const words = label.split(' ');
+        let lines = [];
+        let currentLine = words[0];
+        for (let i = 1; i < words.length; i++) {
+            if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                lines.push(currentLine);
+                currentLine = words[i];
+            } else {
+                currentLine += ' ' + words[i];
+            }
+        }
+        lines.push(currentLine);
+        return lines;
+    };
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        if (!item) return '';
+        let label = item.chart.data.labels[item.dataIndex];
+        return Array.isArray(label) ? label.join(' ') : label;
+    };
+    
+    const commonTooltipOptions = {
+        callbacks: { title: tooltipTitleCallback }
+    };
+
+    new Chart(document.getElementById('digitalPresenceChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Kehadiran Instagram Rendah/Tidak Terverifikasi', 'Kehadiran Instagram Teridentifikasi'],
+            datasets: [{
+                data: [10, 2],
+                backgroundColor: [chartColors.accent2, chartColors.tertiary],
+                borderColor: '#f4f4f5',
+                borderWidth: 4,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { size: 12 } } },
+                tooltip: commonTooltipOptions
+            },
+            cutout: '65%'
+        }
+    });
+
+    const competitorLabels = [
+        'Mitra Sedjati', 'Rmh Duka Tiong Hoa Ie Wan', 'YPK Arimatea', 'Tabita', 
+        'New Omega', 'Yayasan Santa Maria', 'Budi Kasih', 'Bambang Purnomo', 
+        'Budi Tjipto', 'New Abadi', 'Kasih Sejati', 'Agape'
+    ];
+    new Chart(document.getElementById('competitorServicesChart'), {
+        type: 'bar',
+        data: {
+            labels: competitorLabels.map(l => wrapLabel(l, 16)),
+            datasets: [{
+                label: 'Skor Kelengkapan Layanan',
+                data: [7, 6, 6, 4, 4, 3, 2, 2, 2, 1, 1, 1], 
+                backgroundColor: competitorLabels.map(l => l === 'YPK Arimatea' ? chartColors.accent1 : chartColors.tertiary),
+                borderRadius: 4
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: commonTooltipOptions
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { ticks: { font: { size: 10 } } }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('budgetComparisonChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Penawaran Kami', 'Rata-rata Agensi (Dasar)', 'Rata-rata Agensi (Lengkap)'],
+            datasets: [{
+                label: 'Biaya (Rp)',
+                data: [1500000, 2199500, 2999000], 
+                backgroundColor: [chartColors.accent1, chartColors.secondary, chartColors.primary],
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                title: { display: true, text: 'Perbandingan Biaya dengan Pasar', font: { weight: 'bold' } },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback,
+                        label: (context) => `Rp ${new Intl.NumberFormat('id-ID').format(context.parsed.y)}`
+                    }
+                }
+            },
+            scales: {
+                x: { ticks: { font: { size: 10 } } },
+                y: { display: false, beginAtZero: true }
+            }
+        }
+    });
+
+    const packagesData = [
+        { id: 1, title: "Fokus Video", total: 18, 
+          deliverables: `
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-slate-700 uppercase bg-slate-50"><tr><th class="px-4 py-2">Jenis</th><th class="px-4 py-2">Jumlah</th><th class="px-4 py-2">Fokus</th></tr></thead>
+                <tbody>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Reels (Video Pendek)</td><td class="px-4 py-2">5 video</td><td>Jangkauan & Keterlibatan Maksimal</td></tr>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Postingan Feed</td><td class="px-4 py-2">8 postingan</td><td>Grafis Inspiratif & Edukasi Ringan</td></tr>
+                    <tr><td class="px-4 py-2 font-medium">Instagram Stories</td><td class="px-4 py-2">5 stories</td><td>Interaksi Cepat & Pengingat</td></tr>
+                </tbody>
+            </table>`,
+          schedule: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Jadwal Konten Mingguan:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-4">
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 1:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Sahabat di Kala Duka"</li>
+                        <li>Rabu: Feed Grafis "Kutipan Inspiratif"</li>
+                        <li>Jumat: Story "Tanya Jawab Singkat"</li>
+                        <li>Sabtu: Feed Carousel "Tips Menghadapi Duka"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 2:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Panduan Singkat Akta Kematian"</li>
+                        <li>Rabu: Feed Grafis "Kutipan Inspiratif"</li>
+                        <li>Jumat: Story "Di Balik Layar Kesiapan 24 Jam"</li>
+                        <li>Sabtu: Feed Grafis "Informasi Kontak Arimatea"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 3:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Pesan Kenyamanan"</li>
+                        <li>Rabu: Feed Carousel "Langkah-Langkah Mengurus Pemakaman"</li>
+                        <li>Jumat: Story "Jajak Pendapat"</li>
+                        <li>Sabtu: Feed Grafis "Kutipan Inspiratif"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 4:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Mengenal Tim Kami"</li>
+                        <li>Rabu: Feed Grafis "Testimoni Singkat"</li>
+                        <li>Jumat: Story "Pengingat Dukungan"</li>
+                        <li>Sabtu: Reel "Simbol Harapan"</li>
+                        <li>Minggu: Story "Pesan Harian"</li>
+                    </ul>
+                </div>
+            </div>`,
+          mockup: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Tampilan Konten (Reel):</h4>
+            <div class="bg-slate-100 p-4 rounded-lg flex items-center justify-center">
+                <div class="w-full max-w-xs mx-auto md:max-w-sm lg:max-w-none lg:w-auto bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
+                    <div class="p-3 flex items-center space-x-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-teal-200 flex items-center justify-center text-slate-700 font-bold text-sm">A</div>
+                        <div class="font-semibold text-sm text-slate-800">YPK_Arimatea</div>
+                    </div>
+                    <div class="h-80 bg-gradient-to-br from-sky-100 to-teal-100 flex items-center justify-center p-4 text-center">
+                        <span class="text-5xl text-sky-700">🎬</span>
+                        <p class="mt-2 font-bold text-slate-800">Reel: Sahabat di Kala Duka</p>
+                        <p class="text-xs mt-1 text-slate-600">"Kami Siap Melayani Anda Sepenuh Hati, 24 Jam."</p>
+                    </div>
+                    <div class="p-3 text-sm text-slate-700">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-xl">❤️</span><span class="text-xl">💬</span><span class="text-xl">➢</span>
+                        </div>
+                        <strong>YPK_Arimatea</strong> Di setiap langkah duka, kami hadir sebagai sahabat. YPK Arimatea Semarang siap melayani Anda dengan sepenuh hati, 24 jam sehari, memastikan setiap proses berjalan dengan tenang dan bermartabat. 🙏 #ArimateaSemarang #SahabatDiKalaDuka #PelayananKematian #Semarang #DukaCita
+                    </div>
+                </div>
+            </div>`
+        },
+        { id: 2, title: "Fokus Edukasi", total: 20,
+            deliverables: `
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-slate-700 uppercase bg-slate-50"><tr><th class="px-4 py-2">Jenis</th><th class="px-4 py-2">Jumlah</th><th class="px-4 py-2">Fokus</th></tr></thead>
+                <tbody>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Reels (Video Pendek)</td><td class="px-4 py-2">3 video</td><td>Pesan Empati & Pengenalan</td></tr>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Postingan Feed</td><td class="px-4 py-2">10 postingan</td><td>Informasi Mendalam & Pembangunan Otoritas</td></tr>
+                    <tr><td class="px-4 py-2 font-medium">Instagram Stories</td><td class="px-4 py-2">7 stories</td><td>Dukungan Cepat & Interaksi Edukatif</td></tr>
+                </tbody>
+            </table>`,
+          schedule: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Jadwal Konten Mingguan:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-4">
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 1:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Pesan Kenyamanan"</li>
+                        <li>Selasa: Feed Grafis "Layanan Lengkap Arimatea"</li>
+                        <li>Kamis: Feed Carousel "Panduan Mengurus Pemakaman (Bagian 1)"</li>
+                        <li>Sabtu: Story "Polling Emosi"</li>
+                        <li>Minggu: Feed Grafis "Kutipan Inspiratif"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 2:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Mengenal Tim Kami"</li>
+                        <li>Rabu: Feed Carousel "Panduan Mengurus Pemakakan (Bagian 2)"</li>
+                        <li>Jumat: Story "Pengingat Dukungan"</li>
+                        <li>Sabtu: Feed Grafis "Manfaat Pelayanan Profesional"</li>
+                        <li>Minggu: Story "Tanya Jawab Singkat"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 3:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Tips Merawat Diri Saat Berduka"</li>
+                        <li>Rabu: Feed Grafis "Proses Pengurusan Akta Kematian"</li>
+                        <li>Jumat: Story "Fakta Singkat Arimatea"</li>
+                        <li>Sabtu: Feed Carousel "Pertanyaan Umum Seputar Pemakaman"</li>
+                        <li>Minggu: Story "Pesan Harian"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 4:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Selasa: Feed Grafis "Kontak Darurat Arimatea"</li>
+                        <li>Kamis: Feed Carousel "Memilih Rumah Duka yang Tepat"</li>
+                        <li>Sabtu: Story "Jajak Pendapat"</li>
+                        <li>Minggu: Feed Grafis "Kutipan Inspiratif"</li>
+                    </ul>
+                </div>
+            </div>`,
+          mockup: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Tampilan Konten (Carousel):</h4>
+            <div class="bg-slate-100 p-4 rounded-lg flex items-center justify-center">
+                 <div class="w-full max-w-xs mx-auto md:max-w-sm lg:max-w-none lg:w-auto bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
+                    <div class="p-3 flex items-center space-x-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-teal-200 flex items-center justify-center text-slate-700 font-bold text-sm">A</div>
+                        <div class="font-semibold text-sm text-slate-800">YPK_Arimatea</div>
+                    </div>
+                    <div class="h-80 bg-slate-200 p-4 relative">
+                        <div class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-center text-slate-800 text-sm">
+                            <div class="bg-white rounded-md p-3 max-w-[90%] border border-slate-200">
+                                <span class="text-4xl text-sky-700">📄</span><br>
+                                <strong class="text-base">Panduan Mengurus Pemakaman</strong><br>
+                                <p class="mt-1 text-xs text-slate-600">1. Hubungi Yayasan<br>2. Pilih Jenis Pemakaman...</p>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-2 right-2 text-xs text-slate-500 bg-white/70 px-2 py-1 rounded">1/5</div>
+                    </div>
+                    <div class="p-3 text-sm text-slate-700">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-xl">❤️</span><span class="text-xl">💬</span><span class="text-xl">➢</span>
+                        </div>
+                        <strong>YPK_Arimatea</strong> Mengurus pemakaman bisa menjadi proses yang kompleks. Kami telah menyusun panduan singkat untuk membantu Anda memahami persiapan awal. Geser untuk membaca! 👉 Jika ada pertanyaan, tim kami siap membantu. #PanduanPemakaman #EdukasiArimatea #PersiapanDuka #YPKArimatea
+                    </div>
+                </div>
+            </div>`
+        },
+        { id: 3, title: "Fokus Komunitas", total: 19,
+          deliverables: `
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-slate-700 uppercase bg-slate-50"><tr><th class="px-4 py-2">Jenis</th><th class="px-4 py-2">Jumlah</th><th class="px-4 py-2">Fokus</th></tr></thead>
+                <tbody>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Reels (Video Pendek)</td><td class="px-4 py-2">4 video</td><td>Ajakan Interaksi & Pesan Dukungan</td></tr>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Postingan Feed</td><td class="px-4 py-2">6 postingan</td><td>Mendorong Komentar & Diskusi</td></tr>
+                    <tr><td class="px-4 py-2 font-medium">Instagram Stories</td><td class="px-4 py-2">9 stories</td><td>Interaksi Tinggi (Q&A, Kuis, Jajak Pendapat)</td></tr>
+                </tbody>
+            </table>`,
+          schedule: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Jadwal Konten Mingguan:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-4">
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 1:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Mari Berbagi Cerita"</li>
+                        <li>Rabu: Feed Grafis "Pertanyaan Minggu Ini"</li>
+                        <li>Kamis: Story "Jajak Pendapat"</li>
+                        <li>Jumat: Story "Tanya Kami Apapun"</li>
+                        <li>Sabtu: Story "Pengingat Dukungan"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 2:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Q&A Cepat"</li>
+                        <li>Rabu: Feed Carousel "Mitos vs. Fakta Pemakaman"</li>
+                        <li>Kamis: Story "Di Balik Layar Kesiapan"</li>
+                        <li>Jumat: Story "Polling Emosi"</li>
+                        <li>Sabtu: Feed Grafis "Kutipan Inspiratif"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 3:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Pesan Empati dari Tim"</li>
+                        <li>Rabu: Feed Grafis "Ajakan Berbagi Pengalaman"</li>
+                        <li>Kamis: Story "Kuis Singkat: Layanan Arimatea"</li>
+                        <li>Jumat: Story "Pengingat Kontak"</li>
+                        <li>Sabtu: Feed Carousel "Tips Berkomunikasi Saat Berduka"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 4:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Testimoni Singkat (Animasi Teks)"</li>
+                        <li>Rabu: Feed Grafis "Terima Kasih Komunitas"</li>
+                        <li>Kamis: Story "Jajak Pendapat: Topik Selanjutnya"</li>
+                        <li>Jumat: Story "Pesan Harian"</li>
+                    </ul>
+                </div>
+            </div>`,
+          mockup: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Tampilan Konten (Feed Interaktif):</h4>
+             <div class="bg-slate-100 p-4 rounded-lg flex items-center justify-center">
+                 <div class="w-full max-w-xs mx-auto md:max-w-sm lg:max-w-none lg:w-auto bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
+                    <div class="p-3 flex items-center space-x-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-teal-200 flex items-center justify-center text-slate-700 font-bold text-sm">A</div>
+                        <div class="font-semibold text-sm text-slate-800">YPK_Arimatea</div>
+                    </div>
+                    <div class="h-80 bg-rose-100 flex items-center justify-center p-4 text-center">
+                        <div class="bg-white/50 p-4 rounded-lg border border-rose-200">
+                            <p class="text-rose-800 text-lg font-bold">Bagaimana Anda menemukan kekuatan di masa duka?</p>
+                            <p class="text-sm text-rose-700 mt-2">👇 Bagikan di kolom komentar!</p>
+                        </div>
+                    </div>
+                    <div class="p-3 text-sm text-slate-700">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-xl">❤️</span><span class="text-xl">💬</span><span class="text-xl">➢</span>
+                        </div>
+                        <strong>YPK_Arimatea</strong> Setiap perjalanan duka itu unik. Mari berbagi dan belajar dari satu sama lain di kolom komentar. 👇 #KomunitasDuka #SalingMenguatkan #YPKArimatea #BerbagiCerita
+                    </div>
+                </div>
+            </div>`
+        },
+        { id: 4, title: "Visual Minimalis", total: 16,
+          deliverables: `
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-slate-700 uppercase bg-slate-50"><tr><th class="px-4 py-2">Jenis</th><th class="px-4 py-2">Jumlah</th><th class="px-4 py-2">Fokus</th></tr></thead>
+                <tbody>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Reels (Video Pendek)</td><td class="px-4 py-2">4 video</td><td>Video Artistik & Emosional</td></tr>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Postingan Feed</td><td class="px-4 py-2">7 postingan</td><td>Desain Bersih & Pesan Mendalam</td></tr>
+                    <tr><td class="px-4 py-2 font-medium">Instagram Stories</td><td class="px-4 py-2">5 stories</td><td>Pesan Singkat yang Menenangkan</td></tr>
+                </tbody>
+            </table>`,
+          schedule: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Jadwal Konten Mingguan:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-4">
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 1:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Selasa: Reel "Perjalanan Kenangan"</li>
+                        <li>Jumat: Feed Grafis "Kutipan Filosofis"</li>
+                        <li>Minggu: Story "Momen Ketenangan"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 2:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Selasa: Feed Carousel "Refleksi Duka"</li>
+                        <li>Jumat: Reel "Simbol Harapan"</li>
+                        <li>Minggu: Story "Pesan Harian"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 3:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Selasa: Feed Grafis "Puisi Singkat tentang Duka"</li>
+                        <li>Jumat: Reel "Ketenangan dalam Kenangan"</li>
+                        <li>Minggu: Story "Pengingat Merawat Diri"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 4:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Selasa: Feed Grafis "Pesan Dukungan Mendalam"</li>
+                        <li>Rabu: Feed Grafis "Kutipan Inspiratif"</li>
+                        <li>Jumat: Reel "Cahaya di Tengah Kegelapan"</li>
+                        <li>Minggu: Story "Kutipan Penutup Bulan"</li>
+                    </ul>
+                </div>
+            </div>`,
+          mockup: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Tampilan Konten (Grafis Kutipan):</h4>
+             <div class="bg-slate-100 p-4 rounded-lg flex items-center justify-center">
+                <div class="w-full max-w-xs mx-auto md:max-w-sm lg:max-w-none lg:w-auto bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
+                    <div class="p-3 flex items-center space-x-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-teal-200 flex items-center justify-center text-slate-700 font-bold text-sm">A</div>
+                        <div class="font-semibold text-sm text-slate-800">YPK_Arimatea</div>
+                    </div>
+                    <div class="h-80 bg-slate-800 flex items-center justify-center p-6 text-center text-white font-serif">
+                        <p class="text-2xl leading-snug">"Duka adalah harga yang kita bayar untuk cinta yang mendalam."</p>
+                    </div>
+                    <div class="p-3 text-sm text-slate-700">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-xl">❤️</span><span class="text-xl">💬</span><span class="text-xl">➢</span>
+                        </div>
+                        <strong>YPK_Arimatea</strong> Sebuah refleksi tentang ikatan yang tak terputus. Semoga Anda menemukan kekuatan dalam cinta yang pernah ada. #FilosofiDuka #CintaAbadi #RefleksiHati #YPKArimatea
+                    </div>
+                </div>
+            </div>`
+        },
+        { id: 5, title: "Fokus Pengenalan", total: 19,
+          deliverables: `
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-slate-700 uppercase bg-slate-50"><tr><th class="px-4 py-2">Jenis</th><th class="px-4 py-2">Jumlah</th><th class="px-4 py-2">Fokus</th></tr></thead>
+                <tbody>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Reels (Video Pendek)</td><td class="px-4 py-2">4 video</td><td>Perkenalan Tim & Fasilitas</td></tr>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Postingan Feed</td><td class="px-4 py-2">10 postingan</td><td>Membangun Kepercayaan & Transparansi</td></tr>
+                    <tr><td class="px-4 py-2 font-medium">Instagram Stories</td><td class="px-4 py-2">5 stories</td><td>Fakta Singkat & Testimoni</td></tr>
+                </tbody>
+            </table>`,
+          schedule: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Jadwal Konten Mingguan:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-4">
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 1:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Tim Kami Siap Melayani"</li>
+                        <li>Rabu: Infografis "Layanan Lengkap Arimatea"</li>
+                        <li>Jumat: Story "Tahukah Anda?"</li>
+                        <li>Sabtu: Feed Grafis "Kenali Tim Kami: [Nama Tim 1]"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 2:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Sekilas Fasilitas Kami"</li>
+                        <li>Rabu: Carousel "Nilai Inti Arimatea"</li>
+                        <li>Jumat: Story "Kontak Kami"</li>
+                        <li>Sabtu: Feed Grafis "Kenali Tim Kami: [Nama Tim 2]"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 3:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Proses Pelayanan Singkat"</li>
+                        <li>Rabu: Infografis "Keunggulan Mobil Jenazah Arimatea"</li>
+                        <li>Jumat: Story "Testimoni Singkat (Teks)"</li>
+                        <li>Sabtu: Feed Grafis "Kenali Tim Kami: [Nama Tim 3]"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 4:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Komitmen 24 Jam Kami"</li>
+                        <li>Rabu: Carousel "Pertanyaan Umum Layanan"</li>
+                        <li>Jumat: Story "Pengingat Kesiapan 24 Jam"</li>
+                        <li>Sabtu: Feed Grafis "Kenali Tim Kami: [Nama Tim 4]"</li>
+                        <li>Minggu: Infografis "Mengapa Memilih Arimatea?"</li>
+                    </ul>
+                </div>
+            </div>`,
+          mockup: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Tampilan Konten (Grafis "Kenali Tim Kami"):</h4>
+            <div class="bg-slate-100 p-4 rounded-lg flex items-center justify-center">
+                 <div class="w-full max-w-xs mx-auto md:max-w-sm lg:max-w-none lg:w-auto bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
+                    <div class="p-3 flex items-center space-x-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-teal-200 flex items-center justify-center text-slate-700 font-bold text-sm">A</div>
+                        <div class="font-semibold text-sm text-slate-800">YPK_Arimatea</div>
+                    </div>
+                    <div class="h-80 bg-teal-50 flex items-center justify-center p-4">
+                        <div class="text-center">
+                            <div class="w-24 h-24 rounded-full bg-slate-300 mx-auto mb-2 flex items-center justify-center text-slate-500 text-3xl">👤</div>
+                            <h5 class="font-bold text-slate-800 text-lg">Bapak Budi</h5>
+                            <p class="text-xs text-slate-500">Koordinator Pelayanan</p>
+                            <p class="mt-2 text-sm text-slate-700">"Berdedikasi untuk memberikan pelayanan terbaik dan penuh empati."</p>
+                        </div>
+                    </div>
+                    <div class="p-3 text-sm text-slate-700">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-xl">❤️</span><span class="text-xl">💬</span><span class="text-xl">➢</span>
+                        </div>
+                        <strong>YPK_Arimatea</strong> Perkenalkan, salah satu pilar di balik pelayanan YPK Arimatea: Bapak Budi. Dengan dedikasi dan pengalaman, beliau siap memberikan dukungan terbaik untuk keluarga Anda. #KenaliTimKami #YPKArimatea #TimProfesional #SahabatDiKalaDuka
+                    </div>
+                </div>
+            </div>`
+        },
+        { id: 6, title: "Fokus Cerita Visual", total: 18,
+            deliverables: `
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-slate-700 uppercase bg-slate-50"><tr><th class="px-4 py-2">Jenis</th><th class="px-4 py-2">Jumlah</th><th class="px-4 py-2">Fokus</th></tr></thead>
+                <tbody>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Reels (Video Pendek)</td><td class="px-4 py-2">4 video</td><td>Video Empati, Ajakan Interaksi, Behind-the-Scenes Dinamis</td></tr>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Postingan Feed</td><td class="px-4 py-2">6 postingan</td><td>Grafis Minimalis untuk Kutipan & Pengumuman Utama</td></tr>
+                    <tr><td class="px-4 py-2 font-medium">Instagram Stories</td><td class="px-4 py-2">8 stories</td><td>Interaksi Tinggi (Jajak Pendapat, Kuis, Q&A) & Pembaruan Cepat</td></tr>
+                </tbody>
+            </table>`,
+          schedule: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Jadwal Konten Mingguan:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-4">
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 1:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Sapaan Pagi Penuh Harapan"</li>
+                        <li>Rabu: Feed Grafis "Kutipan Inspiratif"</li>
+                        <li>Jumat: Story "Jajak Pendapat Interaktif"</li>
+                        <li>Sabtu: Story "Q&A Cepat"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 2:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Mengenal Lebih Dekat Layanan Kami"</li>
+                        <li>Rabu: Feed Grafis "Pengumuman Penting"</li>
+                        <li>Jumat: Story "Behind-the-Scenes Tim"</li>
+                        <li>Sabtu: Story "Pengingat Kontak Darurat"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 3:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Pesan Penguatan di Masa Sulit"</li>
+                        <li>Rabu: Feed Grafis "Informasi Program Keanggotaan"</li>
+                        <li>Jumat: Story "Kuis Singkat: Fakta YPK Arimatea"</li>
+                        <li>Sabtu: Story "Pesan Harian: Ketenangan"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 4:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Tips Singkat Mengatasi Duka"</li>
+                        <li>Rabu: Feed Grafis "Terima Kasih Komunitas"</li>
+                        <li>Jumat: Story "Jajak Pendapat: Topik Minggu Depan"</li>
+                        <li>Sabtu: Feed Grafis "Kutipan Penutup Bulan"</li>
+                    </ul>
+                </div>
+            </div>`,
+          mockup: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Tampilan Konten (Reel Sapaan Pagi):</h4>
+            <div class="bg-slate-100 p-4 rounded-lg flex items-center justify-center">
+                <div class="w-full max-w-xs mx-auto md:max-w-sm lg:max-w-none lg:w-auto bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
+                    <div class="p-3 flex items-center space-x-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-teal-200 flex items-center justify-center text-slate-700 font-bold text-sm">A</div>
+                        <div class="font-semibold text-sm text-slate-800">YPK_Arimatea</div>
+                    </div>
+                    <div class="h-80 bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center p-4 text-center">
+                        <span class="text-5xl text-sky-700">☀️</span>
+                        <p class="mt-2 font-bold text-slate-800">Reel: Sapaan Pagi Penuh Harapan</p>
+                        <p class="text-xs mt-1 text-slate-600">"Semoga hari ini membawa ketenangan..."</p>
+                    </div>
+                    <div class="p-3 text-sm text-slate-700">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-xl">❤️</span><span class="text-xl">💬</span><span class="text-xl">➢</span>
+                        </div>
+                        <strong>YPK_Arimatea</strong> Selamat pagi, Sahabat Arimatea. Semoga hari ini membawa ketenangan dan kekuatan bagi kita semua. Kami selalu di sini untuk mendampingi Anda. 🙏 #YPKArimatea #PesanPagi #Harapan #Dukungan
+                    </div>
+                </div>
+            </div>`
+        },
+        { id: 7, title: "Fokus Edukasi Mendalam", total: 19,
+            deliverables: `
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-slate-700 uppercase bg-slate-50"><tr><th class="px-4 py-2">Jenis</th><th class="px-4 py-2">Jumlah</th><th class="px-4 py-2">Fokus</th></tr></thead>
+                <tbody>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Reels (Video Pendek)</td><td class="px-4 py-2">3 video</td><td>Pengantar Topik & Ringkasan Poin Kunci</td></tr>
+                    <tr class="border-b border-slate-200"><td class="px-4 py-2 font-medium">Postingan Feed (Carousel/Infografis)</td><td class="px-4 py-2">10 postingan</td><td>Infografis Detail, Panduan Langkah-demi-Langkah, Penjelasan Mendalam</td></tr>
+                    <tr><td class="px-4 py-2 font-medium">Instagram Stories</td><td class="px-4 py-2">6 stories</td><td>Fakta Singkat Edukasi, Kuis, Q&A Spesifik</td></tr>
+                </tbody>
+            </table>`,
+          schedule: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Jadwal Konten Mingguan:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-4">
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 1:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Pengantar Panduan Pemakaman"</li>
+                        <li>Selasa: Feed Infografis "Proses Pengurusan Akta Kematian"</li>
+                        <li>Kamis: Feed Carousel "Memilih Peti Mati yang Tepat"</li>
+                        <li>Sabtu: Story "Fakta Singkat: Layanan 24 Jam"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 2:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Fakta Cepat YPK Arimatea"</li>
+                        <li>Rabu: Feed Infografis "Manfaat Program Keanggotaan"</li>
+                        <li>Jumat: Feed Carousel "Panduan Mengatasi Duka: Tahap-Tahap Emosi"</li>
+                        <li>Minggu: Story "Kuis Edukasi: Layanan Kami"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 3:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Senin: Reel "Tips Cepat: Persiapan Pemakaman"</li>
+                        <li>Rabu: Feed Infografis "Perbandingan Jenis Tanah Makam"</li>
+                        <li>Jumat: Feed Carousel "Pertanyaan Umum Seputar Pemakaman (FAQ)"</li>
+                        <li>Minggu: Story "Pengingat: Dukungan Psikologis"</li>
+                    </ul>
+                </div>
+                 <div class="bg-slate-100 p-3 rounded-lg border border-slate-200">
+                    <p class="font-medium text-slate-700 mb-1">Minggu 4:</p>
+                    <ul class="list-disc list-inside text-slate-600 ml-4">
+                        <li>Selasa: Feed Infografis "Peran YPK Arimatea dalam Komunitas"</li>
+                        <li>Kamis: Feed Carousel "Etika Berduka di Era Digital"</li>
+                        <li>Sabtu: Story "Fakta Singkat: Sejarah YPK Arimatea"</li>
+                        <li>Minggu: Feed Infografis "Kontak Penting YPK Arimatea"</li>
+                    </ul>
+                </div>
+            </div>`,
+          mockup: `
+            <h4 class="font-semibold mb-3 text-slate-800">Contoh Tampilan Konten (Infografis):</h4>
+            <div class="bg-slate-100 p-4 rounded-lg flex items-center justify-center">
+                 <div class="w-full max-w-xs mx-auto md:max-w-sm lg:max-w-none lg:w-auto bg-white rounded-xl shadow-md overflow-hidden border border-slate-200">
+                    <div class="p-3 flex items-center space-x-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-teal-200 flex items-center justify-center text-slate-700 font-bold text-sm">A</div>
+                        <div class="font-semibold text-sm text-slate-800">YPK_Arimatea</div>
+                    </div>
+                    <div class="h-80 bg-sky-50 flex items-center justify-center p-4">
+                        <div class="text-center bg-white/50 p-4 rounded-lg border border-sky-200">
+                            <span class="text-5xl text-sky-700">📊</span>
+                            <h5 class="font-bold text-slate-800 text-lg mt-2">Infografis: Proses Pengurusan Akta Kematian</h5>
+                            <p class="text-sm text-slate-600 mt-1">Langkah mudah mengurus dokumen penting.</p>
+                        </div>
+                    </div>
+                    <div class="p-3 text-sm text-slate-700">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-xl">❤️</span><span class="text-xl">💬</span><span class="text-xl">➢</span>
+                        </div>
+                        <strong>YPK_Arimatea</strong> Pengurusan akta kematian adalah langkah penting. Agar lebih mudah, kami sajikan infografis sederhana ini. Simpan postingan ini untuk referensi di kemudian hari! #AktaKematian #AdministrasiDuka #YPKArimateaSemarang #InformasiPenting
+                    </div>
+                </div>
+            </div>`
+        }
+    ];
+
+    const packageSelector = document.getElementById('package-selector');
+    const packageDetailsContainer = document.getElementById('package-details');
+
+    packagesData.forEach(pkg => {
+        const tab = document.createElement('button');
+        tab.className = 'package-tab px-4 py-3 text-sm md:text-base font-semibold relative';
+        tab.innerHTML = `${pkg.title} <span class="badge">${pkg.total}</span>`;
+        tab.dataset.packageId = pkg.id;
+        packageSelector.appendChild(tab);
+    });
+
+    const updatePackageDetails = (packageId) => {
+        const pkg = packagesData.find(p => p.id == packageId);
+        if (!pkg) return;
+
+        packageDetailsContainer.innerHTML = `
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Rincian Paket: ${pkg.title} (${pkg.total} Konten)</h3>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 mb-6">
+                        ${pkg.deliverables}
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Jadwal Konten Tentatif:</h3>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                        ${pkg.schedule}
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Simulasi Tampilan Konten:</h3>
+                    ${pkg.mockup}
+                </div>
+            </div>
+        `;
+
+        document.querySelectorAll('.package-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.packageId == packageId);
+        });
+    };
+    
+    packageSelector.addEventListener('click', (e) => {
+        if (e.target.closest('.package-tab')) {
+            updatePackageDetails(e.target.closest('.package-tab').dataset.packageId);
+        }
+    });
+
+    updatePackageDetails(1);
+    
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                });
+            }
+        });
+    }, { rootMargin: "-50% 0px -50% 0px" });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+});
+</script>
+</body>
+</html>
